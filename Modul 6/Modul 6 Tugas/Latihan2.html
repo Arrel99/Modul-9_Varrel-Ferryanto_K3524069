@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan 2 - Highlight Paragraf</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 40px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        p {
+            text-align: justify;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 8px 12px;
+        }
+
+        .highlight {
+            color: red;
+            background: yellow;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>PTIK FKIP UNS</h1>
+    <p id="teks">
+        The Faculty of Teacher Training and Education, Sebelas Maret University, Surakarta is an Educational Personnel
+        Education Institution (LPTK) which has 24 study programs in 6 majors. Each study program has its own
+        characteristics in producing superior, strong and intelligent educational staff.<br><br>
+        The Informatics and Computer Technology Education (PTIK) study program is planned to take shelter in the
+        management of the Engineering and Vocational Education (PTK) department. This placement revises our previous
+        statement, where the PTIK study program is under the P.MIPA department. PTIK is a study program that will
+        produce graduates who are prioritized to teach in vocational/vocational programs. So, it would be better if PTIK
+        was under the PTK department which oversees vocational programs such as Building Engineering Education, and
+        Mechanical Engineering Education. To meet the needs of lecturers in the field of information technology that
+        cannot be met by the PTK department, PTIK will conduct resource sharing with the mathematics study program.
+    </p>
+
+    <button onclick="toggleHighlight()">Highlight Paragraf</button>
+
+    <script>
+        let highlighted = false;
+        function toggleHighlight() {
+            const teks = document.getElementById('teks');
+            if (!highlighted) {
+                teks.innerHTML = teks.innerHTML
+                    .replace(/The Faculty of Teacher Training and Education, Sebelas Maret University/, '<span class="highlight">$&</span>')
+                    .replace(/Educational Personnel Education Institution \(LPTK\)/, '<span class="highlight">$&</span>')
+                    .replace(/superior, strong and intelligent educational staff/, '<span class="highlight">$&</span>')
+                    .replace(/The Informatics and Computer Technology Education \(PTIK\)/, '<span class="highlight">$&</span>')
+                    .replace(/Engineering and Vocational Education \(PTK\)/, '<span class="highlight">$&</span>')
+                    .replace(/prioritized to teach in vocational\/vocational programs/, '<span class="highlight">$&</span>')
+                    .replace(/Building Engineering Education, and Mechanical Engineering Education/, '<span class="highlight">$&</span>')
+                    .replace(/resource sharing with the mathematics study program/, '<span class="highlight">$&</span>');
+                highlighted = true;
+            } else {
+                location.reload();
+            }
+        }
+    </script>
+</body>
+
+</html>

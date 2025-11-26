@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Latihan 1 - Highlight Paragraf (jQuery)</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-size: 26px;
+        }
+
+        p {
+            text-align: justify;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 8px 14px;
+            cursor: pointer;
+        }
+
+        .highlight {
+            color: red;
+            background: yellow;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>PTIK FKIP UNS</h1>
+
+    <p id="teks">
+        The Faculty of Teacher Training and Education, Sebelas Maret University, Surakarta is an Educational Personnel
+        Education Institution (LPTK) which has 24 study programs in 6 majors. Each study program has its own
+        characteristics in producing superior, strong and intelligent educational staff.<br><br>
+        The Informatics and Computer Technology Education (PTIK) study program is planned to take shelter in the
+        management of the Engineering and Vocational Education (PTK) department. This placement revises our previous
+        statement, where the PTIK study program is under the P.MIPA department. PTIK is a study program that will
+        produce graduates who are prioritized to teach in vocational/vocational programs. So, it would be better if PTIK
+        was under the PTK department which oversees vocational programs such as Building Engineering Education, and
+        Mechanical Engineering Education. To meet the needs of lecturers in the field of information technology that
+        cannot be met by the PTK department, PTIK will conduct resource sharing with the mathematics study program.
+    </p>
+
+    <button id="toggle">Highlight Paragraf</button>
+
+    <script>
+        $(function () {
+            const teksAsli = $("#teks").html();
+            let aktif = false;
+
+            (function applyInitialHighlight() {
+                let t = $("#teks").html()
+                    .replace(/The Faculty of Teacher Training and Education, Sebelas Maret University[^.]+\./,
+                        '<span class="highlight">$&</span>')
+                    .replace(/superior, strong and intelligent educational staff.\./,
+                        '<span class="highlight">$&</span>')
+                    .replace(/The Informatics and Computer Technology Education \(PTIK\)/,
+                        '<span class="highlight">$&</span>')
+                    .replace(/Engineering and Vocational Education \(PTK\)/,
+                        '<span class="highlight">$&</span>')
+                    .replace(/prioritized to teach in vocational\/vocational programs\./,
+                        '<span class="highlight">$&</span>')
+                    .replace(/resource sharing with the mathematics study program/,
+                        '<span class="highlight">$&</span>');
+                $("#teks").html(t);
+                $("#toggle").text("Hapus Highlight");
+                aktif = true;
+            })();
+
+            $("#toggle").click(function () {
+                if (!aktif) {
+                    let t = $("#teks").html()
+                        .replace(/The Faculty of Teacher Training and Education[^.]+\./,
+                            '<span class="highlight">$&</span>')
+                        .replace(/Educational Personnel Education Institution \(LPTK\)/,
+                            '<span class="highlight">$&</span>')
+                        .replace(/superior, strong and intelligent educational staff\./,
+                            '<span class="highlight">$&</span>')
+                        .replace(/The Informatics and Computer Technology Education \(PTIK\)/,
+                            '<span class="highlight">$&</span>')
+                        .replace(/Engineering and Vocational Education \(PTK\)/,
+                            '<span class="highlight">$&</span>')
+                        .replace(/Building Engineering Education, and Mechanical Engineering Education/,
+                            '<span class="highlight">$&</span>')
+                        .replace(/resource sharing with the mathematics study program/,
+                            '<span class="highlight">$&</span>');
+                    $("#teks").html(t);
+                    $(this).text("Hapus Highlight");
+                    aktif = true;
+                } else {
+                    $("#teks").html(teksAsli);
+                    $(this).text("Highlight Paragraf");
+                    aktif = false;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

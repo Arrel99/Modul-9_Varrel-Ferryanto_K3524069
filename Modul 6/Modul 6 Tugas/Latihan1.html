@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <title>Latihan 1 - Kalkulator Sederhana</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 30px;
+        }
+
+        input {
+            margin: 5px;
+        }
+
+        button {
+            margin: 5px;
+            padding: 6px 10px;
+        }
+
+        .hasil {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Kalkulator Sederhana</h2>
+    <input type="number" id="a" placeholder="Angka 1">
+    <input type="number" id="b" placeholder="Angka 2"><br>
+    <button onclick="hitung('tambah')">+</button>
+    <button onclick="hitung('kurang')">-</button>
+    <button onclick="hitung('kali')">×</button>
+    <button onclick="hitung('bagi')">÷</button>
+    <div id="hasil" class="hasil"></div>
+
+    <script>
+        function hitung(aksi) {
+            let a = parseFloat(document.getElementById("a").value);
+            let b = parseFloat(document.getElementById("b").value);
+            if (isNaN(a) || isNaN(b)) {
+                document.getElementById("hasil").innerHTML = "Masukkan dua angka!";
+                return;
+            }
+            let h = 0;
+            switch (aksi) {
+                case 'tambah': h = a + b; break;
+                case 'kurang': h = a - b; break;
+                case 'kali': h = a * b; break;
+                case 'bagi':
+                    if (b === 0) {
+                        document.getElementById("hasil").innerHTML = "Tidak bisa membagi dengan 0!";
+                        return;
+                    }
+                    h = a / b; break;
+            }
+            document.getElementById("hasil").innerHTML = "Hasil: " + h;
+        }
+    </script>
+</body>
+
+</html>

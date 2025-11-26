@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jam Digital jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        #jam {
+            font-size: 28px;
+            font-weight: bold;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+        }
+
+        #start {
+            margin-top: 20px;
+            padding: 10px 25px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        #start:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <h1 id="jam">Placeholder Jam</h1><br>
+        <button id="start">START/STOP</button>
+    </center>
+
+    <script>
+        $(document).ready(function () {
+            let interval;
+            let berjalan = false;
+
+            function tampilkanJam() {
+                const hariNama = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+                const bulanNama = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
+                    "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+
+                const sekarang = new Date();
+                const hari = hariNama[sekarang.getDay()];
+                const tanggal = sekarang.getDate();
+                const bulan = bulanNama[sekarang.getMonth()];
+                const tahun = sekarang.getFullYear();
+
+                const jamAngka = sekarang.getHours();
+                const jam12 = jamAngka % 12 || 12;
+                const jam = jam12.toString().padStart(2, '0');
+                const menit = sekarang.getMinutes().toString().padStart(2, '0');
+                const detik = sekarang.getSeconds().toString().padStart(2, '0');
+
+                $("#jam").html(`${hari}, ${tanggal} ${bulan} ${tahun}<br>${jam}:${menit}:${detik}`);
+            }
+
+            $("#start").click(function () {
+                if (berjalan) {
+                    clearInterval(interval);
+                    berjalan = false;
+                    $(this).text("START");
+                } else {
+                    tampilkanJam();
+                    interval = setInterval(tampilkanJam, 1000);
+                    berjalan = true;
+                    $(this).text("STOP");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

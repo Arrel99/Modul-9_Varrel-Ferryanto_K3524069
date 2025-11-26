@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Menggunakan Media Query CSS3</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        .smartphone {
+            display: none;
+        }
+        .tablet {
+            display: none;
+        }
+        .desktop {
+            display: none;
+        }
+
+        @media only screen and (max-width: 600px) {
+            body {
+                background-color: yellow;
+            }
+            .smartphone {
+                display: block;
+            }
+        }
+
+        @media only screen and (min-width: 601px) and (max-width: 1024px) {
+            .tablet {
+                display: block;
+            }
+        }
+
+        @media only screen and (min-width: 1025px) {
+            .desktop {
+                display: block;
+            }
+        }
+    </style>
+</head> 
+<body>
+    <h3>Menggunakan Media Query CSS 3</h3>
+
+    <div class="smartphone">
+        <h2>Terdeteksi ukuran smartphone</h2>
+    </div>
+
+    <div class="tablet">
+        <h2>Terdeteksi ukuran tablet</h2>
+    </div>
+
+    <div class="desktop">
+        <img src="logo uns.png" alt="Logo Universitas Sebelas Maret">
+        <h2>Terdeteksi ukuran desktop</h2>
+    </div>
+</body>
+</html>
